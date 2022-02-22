@@ -1,0 +1,33 @@
+<a href="https://shopee.vn/">Shopee</a> --> cách viết bình thường
+<a href="{{link.shopee}}">Shopee</a> --> viết theo kiểu này không chạy
+<a v-bind:href="link.shopee">Shopee</a> --> cách viết đúng
+ bind cái thuộc tính href 
+ vue làm việc qua các thẻ html, không làm việc qua các attribute(thuộc tính),
+ nếu muốn làm việc với các attribute, sử dụng cú pháp v-blind:href(tên thuộc tính)
+
+
+
+---------------------------------------------
+
+<div id="app">
+    <p v-once>{{content}} - {{showContent()}}</p>
+    <!-- v-once:  thực hiện các phép nội suy một lần 
+    (không cập nhật lại khi dữ liệu thay đổi)
+    nhưng nhớ là làm như vậy sẽ ảnh hưởng đến tất cả các ràng buộc khác trên cùng một node
+   -->
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        content: 'First Content',
+      },
+      methods: {
+        showContent: function(){
+          this.content = 'Content has already changed'
+          return this.content
+        }
+      }
+    })
+  </script>

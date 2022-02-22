@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div
+    id="app"
+    style="background-color: pink;"
+    v-on:mouseover="tinhToaDo"
+  >
+    <p>Tọa độ x : <span>{{x}}</span></p>
+    <p>Tọa độ y : <span>{{y}}</span></p>
+    <!-- <div v-on:mouseover="dungToaDo" style="background-color: skyblue;">Dừng tọa độ</div> -->
+    <div v-on:mouseover.stop style="background-color: skyblue;">Dừng tọa độ</div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        x: 0,
+        y: 0
+      },
+      methods: {
+        tinhToaDo: function(e){
+          this.x = e.clientX
+          this.y = e.clientY
+        },
+        dungToaDo: function(e){
+          e.stoppropagation()
+        }
+      }
+    })
+  </script>
+</body>
+</html>

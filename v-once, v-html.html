@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p v-once>{{content}} - {{showContent()}}</p>
+    <!-- v-once:  thực hiện các phép nội suy một lần 
+    (không cập nhật lại khi dữ liệu thay đổi)
+    nhưng nhớ là làm như vậy sẽ ảnh hưởng đến tất cả các ràng buộc khác trên cùng một node
+   -->
+    <p>{{taga}}</p>
+    <p v-html="taga"></p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        content: 'First Content',
+        taga: `<a href='https://someone-web.com'>use v-html</a>`
+      },
+      methods: {
+        showContent: function(){
+          this.content = 'Content has already changed'
+          return this.content
+        }
+      }
+    })
+  </script>
+</body>
+</html>

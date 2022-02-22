@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div class="app">
+    <!-- <a href="https://tiki.vn/">Tiki</a> -->
+    <!-- <a href="{{link.tiki}}">Tiki</a> -->
+    <a v-bind:href="link.tiki">Tiki</a>
+    <div>
+      <!-- <a href="https://shopee.vn/">Shopee</a> -->
+      <!-- <a href="{{link.shopee}}">Shopee</a> -->
+      <a v-bind:href="link.shopee">Shopee</a> 
+      <!-- bind cái thuộc tính href 
+        vue làm việc qua các thẻ html, không làm việc qua các attribute(thuộc tính),
+        nếu muốn làm việc với các attribute, sử dụng cú pháp v-blind:href(tên thuộc tính)
+      -->
+      
+    </div>
+  </div>
+  <div class="app">
+    <!-- <a href="https://tiki.vn/">Tiki</a> -->
+    <a v-bind:href="link.tiki">Tiki</a>
+    <div>
+      <a href="https://shopee.vn/">Shopee</a>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '.app', //nếu có 2 cái element giống class nhau, vue đọc cái đầu tiên
+      data: {
+        link: {
+          tiki: 'https://tiki.vn/',
+          shopee: 'https://shopee.vn/'
+        }
+      },
+      methods: {
+
+      }
+    })
+  </script>
+</body>
+</html>
