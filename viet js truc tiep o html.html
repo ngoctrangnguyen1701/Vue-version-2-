@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- <h1>Giá trị: {{value}}</h1>
+    <button v-on:click="tang">Tăng</button>
+    <button v-on:click="giam">Giảm</button>
+    <p>{{message}}</p> -->
+    <h1>Giá trị: {{value}}</h1>
+    <button v-on:click="value++">Tăng</button>
+    <button v-on:click="value--">Giảm</button>
+    <p>{{value > 10 ? 'Không được lớn hơn 10' : value < 0 ? 'Không được nhỏ hơn 0' : 'Trong phạm vi cho phép'}}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data:{
+        value: 0,
+        message: ''
+      },
+      methods: {
+        tang: function(){
+          console.log('function tang');
+          this.value += 1
+          if(this.value > 10) {
+            this.message = 'Không được lớn hơn 10'
+          }
+          else if(this.value < 0){
+            this.message = 'Không được nhỏ hơn 0'
+          }
+          else{
+            this.message = 'Trong phạm vi cho phép'
+          }
+        },
+        giam: function(){
+          console.log('function tang');
+          this.value -=1
+          if(this.value > 10) {
+            this.message = 'Không được lớn hơn 10'
+          }
+          else if(this.value < 0){
+            this.message = 'Không được nhỏ hơn 0'
+          }
+          else{
+            this.message = 'Trong phạm vi cho phép'
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
