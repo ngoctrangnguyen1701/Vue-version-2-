@@ -10,24 +10,47 @@
 ---------------------------------------------
 
 <div id="app">
-    <p v-once>{{content}} - {{showContent()}}</p>
-    <!-- v-once:  thực hiện các phép nội suy một lần 
-    (không cập nhật lại khi dữ liệu thay đổi)
-    nhưng nhớ là làm như vậy sẽ ảnh hưởng đến tất cả các ràng buộc khác trên cùng một node
-   -->
-  </div>
+  <p v-once>{{content}} - {{showContent()}}</p>
+  <!-- v-once:  thực hiện các phép nội suy một lần 
+  (không cập nhật lại khi dữ liệu thay đổi)
+  nhưng nhớ là làm như vậy sẽ ảnh hưởng đến tất cả các ràng buộc khác trên cùng một node
+  -->
+</div>
 
-  <script>
-    new Vue({
-      el: '#app',
-      data: {
-        content: 'First Content',
-      },
-      methods: {
-        showContent: function(){
-          this.content = 'Content has already changed'
-          return this.content
-        }
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      content: 'First Content',
+    },
+    methods: {
+      showContent: function(){
+        this.content = 'Content has already changed'
+        return this.content
       }
-    })
-  </script>
+    }
+  })
+</script>
+
+----------------------------------------------
+<div id="app">
+  <p>{{taga}}</p>
+  <p v-html="taga"></p>
+  <!-- v-html: dùng để thêm html vào -->
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      content: 'First Content',
+      taga: `<a href='https://someone-web.com'>use v-html</a>`
+    },
+    methods: {
+      showContent: function(){
+        this.content = 'Content has already changed'
+        return this.content
+      }
+    }
+  })
+</script>

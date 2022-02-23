@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- <p>Giá trị A: {{tangA()}}</p>
+    <p>Giá trị B: {{tangB()}}</p> -->
+    <p>Giá trị A: {{tangA}}</p>
+    <p>Giá trị B: {{tangB}}</p>
+    <p>Giá trị A: {{tangAf()}}</p>
+    <div>
+      <!-- <button v-on:click="tangA">Tăng giá trị A</button>
+      <button v-on:click="tangB">Tăng giá trị B</button> -->
+      <button v-on:click="a++">Tăng giá trị A</button>
+      <button v-on:click="b++">Tăng giá trị B</button>
+    </div>
+  </div>
+
+  <hr>
+  <div id="app2">
+    <!-- <p>Giá trị E: {{congE()}}</p>
+    <p>Giá trị F: {{congF()}}</p> -->
+    <p>Giá trị E: {{congE}}</p>
+    <p>Giá trị F: {{congF}}</p>
+    <input type="text" v-on:input="onAddValue">
+    <div>
+      <button v-on:click="e++">Cộng giá trị ô input vào E</button>
+      <button v-on:click="f++" >Cộng giá trị ô input vào F</button>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        a: 0,
+        b: 0,
+      },
+      computed: {
+        //computed thực hiện như 1 function nhưng nó chỉ được coi là 1 thuộc tính
+        tangA: function(){
+          console.log('run tangA')
+          return this.a
+        },
+        tangB: function(){
+          console.log('run tangB')
+          return this.b
+        }
+      },
+      methods: {
+        // tangA: function(){
+        //   console.log('run tangA')
+          // return this.a++
+          //lúc đầu vào hàm tangA được gọi, chạy trả về return, đồng thời làm thay đổi giá trị a (a++)
+          //khi a thay đổi hàm tangA lại được gọi lại lần nữa, chạy trả về return, thay đổi giá trị a...
+          //a thay đổi, hàm tangA lại bị gọi lại lần nữa ... cứ thế lặp đi lặp lại nhiều lần --> vue sẽ báo lỗi render nhiều lần
+        //   return this.a
+        // },
+        // tangB: function(){
+        //   console.log('run tangB')
+        //   // return this.b++
+        //   return this.b
+        // }
+        //↑nếu sử dụng method và gọi function giống ở trên,
+        //thì đồng thời cả 2 cái function tangA và tangB đều được chạy
+        //tham khảo: youtube.com/watch?v=Zu36NPVsmB0&t=195s
+
+        tangAf: function(){
+          console.log('tang Af')
+          return this.a
+        }
+        //ta sẽ thấy hàm tangA trong computed sẽ chạy trước hàm tangAf trong methods
+      }
+    })
+    //explain: khi có sự thay đổi giá trị ở trong 1 template (ở đây là thẻ <div id="app" là template)
+    //các cái trong template sẽ render lại, nên các function trong methods được gọi ngay lúc render sẽ chạy lại
+    //mặc dù không không làm ảnh hưởng gì đến kết quả
+    //--> như vậy sẽ có các function chạy không cần thiết
+    //sử dụng computed biến nó thành 1 thuộc tính và chỉ chạy khi nào có sự thay đổi trong giá trị mà nó phụ thuộc
+
+    //-----------------------------------
+    new Vue({
+      el: '#app2',
+      data: {
+        e: 0,
+        f: 0,
+        addValue: 0,
+      },
+      methods: {
+        // congE: function(){
+        //   console.log('congE')
+        //   return this.e + this.addValue
+        // },
+        // congF: function(){
+        //   console.log('congF')
+        //   return this.f + this.addValue
+        // },
+        onAddValue: function(e){
+          this.addValue = parseInt(e.target.value)
+        }
+      },
+      computed: {
+        congE: function(){
+          console.log('congE')
+          return this.e + this.addValue
+        },
+        congF: function(){
+          console.log('congF')
+          return this.f + this.addValue
+        },
+      }
+    })
+  </script>
+</body>
+</html>
