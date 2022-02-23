@@ -54,3 +54,36 @@
     }
   })
 </script>
+
+-------------------------------------------
+<div id="app">
+  <button v-on:click="isNightTheme = !isNightTheme">Change theme</button>
+  <p v-if="isNightTheme">Nigth theme is on</p>
+  <!-- nếu isNightTheme là true, cái element trên mới được render ra, và ngược lại -->
+  <p v-else>Nigth theme is off</p>
+  <hr>
+
+  <button v-on:click="isShowMenu = !isShowMenu">Show menu</button>
+  <template v-if="isShowMenu">
+    <div>Menu 1</div>
+    <div>Menu 2</div>
+    <div>Menu 3</div>
+  </template>
+
+  <hr>
+  <button v-on:click="isVShow = !isVShow">Sử dụng v-show</button>
+  <p v-show="isVShow">Chỗ này đang sử dụng v-show</p>
+  <!-- v-show, ẩn hiện element dùng nó, nhưng khác với v-if và v-else, v-show ko xóa element khỏi DOM
+    v-show thay đổi style inline cho element thành display: none
+    -->
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      isNightTheme: false
+    }
+  })
+</script>
+

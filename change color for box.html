@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+
+<style>
+  .d-flex{
+    display: flex;
+  }
+  .item{
+    width: 100px;
+    height: 100px;
+    margin-left: 30px;
+    background-color: gray;
+
+    line-height: 100px;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+  }
+  .red{
+    background-color: red;
+  }
+  .green{
+    background-color: green;
+  }
+  .blue{
+    background-color: blue;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <p>Change color same time</p>
+    <div class="d-flex">
+      <div class="item" v-on:click="changeColor('red')" v-bind:class="color">red</div>
+      <div class="item" v-on:click="changeColor('green')" v-bind:class="color">green</div>
+      <div class="item" v-on:click="changeColor('blue')" v-bind:class="color">blue</div>
+    </div>
+  </div>
+
+  <div id="app2" style="margin-top: 50px;">
+    <p>Change color only one box</p>
+    <div class="d-flex">
+      <div class="item" v-on:click="changeColor('red')" v-bind:class="[color == 'red' ? 'red' : '']">red</div>
+      <div class="item" v-on:click="changeColor('green')" v-bind:class="[color == 'green' ? 'green' : '']">green</div>
+      <div class="item" v-on:click="changeColor('blue')" v-bind:class="[color == 'blue' ? 'blue' : '']">blue</div>
+    </div>
+  </div>
+
+  <div id="app3" style="margin-top: 50px;">
+    <p>Toogle color when click</p>
+    <div class="d-flex">
+      <div class="item" v-on:click="isRed = !isRed" v-bind:class="{red: isRed}">red</div>
+      <div class="item" v-on:click="isGreen = !isGreen" v-bind:class="{green: isGreen}">green</div>
+      <div class="item" v-on:click="isBlue = !isBlue" v-bind:class="{blue: isBlue}">blue</div>
+    </div>
+  </div>
+
+  <div id="app4" style="margin-top: 50px;">
+    <p>Phan biet click giua cac o voi computed, neu khong phai o thu 3 thi chuyen het sang mau do,<br>
+      con click vao o thu 3 thi chuyen sang mau xanh
+    </p>
+    <div class="d-flex">
+      <div
+        class="item"
+        v-on:click="color = 'red'"
+        v-bind:class="color == '' ? red : color"
+      >ITEM</div>
+      <div
+        class="item"
+        v-on:click="color = 'red'"
+        v-bind:class="color == '' ? red : color"
+      >ITEM</div>
+      <div
+        class="item"
+        v-on:click="color = 'green'"
+        v-bind:class="color == '' ? green : color"
+      >ITEM</div>
+    </div>
+  </div>
+
+  <div id="app5">
+    <p>Nhap gia tri dung cua phep tinh tong, o thu 3 se chuyen sang mau xanh, <br>
+      con neu tra loi sai o thu 3 chuyen thanh mau do
+    </p>
+    <label>3 + 5 =</label>
+    <input type="number" v-model="answer">
+    <button v-on:click="checkAnswer">Answer</button>
+    <div class="item" v-bind:class="result == true ? 'green' : 'red' ">{{result}}</div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        color: ''
+      },
+      methods: {
+        changeColor: function(color){
+          this.color = color
+          console.log(this.color)
+        }
+      }
+    })
+
+    new Vue({
+      el: '#app2',
+      data: {
+        color: ''
+      },
+      methods: {
+        changeColor: function(color){
+          this.color = color
+          console.log(this.color)
+        }
+      }
+    })
+
+    new Vue({
+      el: '#app3',
+      data: {
+        color: '',
+        isRed: false,
+        isGreen: false,
+        isBlue: false,
+      },
+    })
+
+    new Vue({
+      el: '#app4',
+      data: {
+        color: ''
+      },
+      computed: {
+        red: function(){
+          return 'red'
+        },
+        green: function(){
+          return 'green'
+        }
+      }
+    })
+
+    new Vue({
+      el: '#app5',
+      data: {
+        answer: 0,
+        result: 'No answer'
+      },
+      methods: {
+        checkAnswer: function(){
+          if(3 + 5 == parseInt(this.answer)){
+            console.log(true);
+            this.result = true
+          }
+          else{
+            this.result = false
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
