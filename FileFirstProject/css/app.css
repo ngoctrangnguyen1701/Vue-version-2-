@@ -144,6 +144,29 @@ button {
     animation: run-win 0.75s ease-out;
 }
 
+.damage-index, .heal-index{
+    font-size: 35px;
+    position: absolute;
+    right: 0;
+    /* visibility: hidden; */
+}
+.damage-index{
+    color: red;
+    animation: run-damage-index 1s ease-out forwards;
+}
+.run-damage-index{
+    visibility: visible;
+    animation: run-damage-index 1s ease-out forwards;
+    /* forwards: giữ trạng thái của element sau khi chạy xong animation */
+}
+.heal-index{
+    color: green;
+    animation: run-heal-index 1s ease-out;
+}
+.run-heal-index{
+    visibility: visible;
+    animation: run-heal-index 1s ease-out;
+}
 @keyframes run-healthbar-progress {
     0%{width: 0%}
     100%{width: 100%}
@@ -152,4 +175,14 @@ button {
 @keyframes run-win {
     0%{transform: perspective(500px) translateZ(300px);}
     100%{transform: perspective(500px) translateZ(0);}
+}
+
+@keyframes run-damage-index {
+    0%{top: 0; opacity: 1}
+    100%{top: -50px; opacity: 0}
+}
+
+@keyframes run-heal-index {
+    0%{top: 0; opacity: 1}
+    100%{top: -50px; opacity: 0}
 }

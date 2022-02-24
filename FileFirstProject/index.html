@@ -6,18 +6,30 @@
     <link rel="stylesheet" href="css/app.css">
     <script src="script/vue.js"></script>
 </head>
-<body style="font-family: Arial, Helvetica, sans-serif;">
+<body style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 30px;">
     <div id="app">
         {{monsterAttack}}
-        <!-- {{setWinner}} -->
         <section class="row">
             <div class="small-6 columns">
-                <!-- <div :class="winner == 'You' ? 'win' : ''">WIN</div> -->
                 <div class="win" v-if="winner === 'You'">WIN</div>
                 <h1 class="text-center">YOU</h1>
                 <img src="img/chibi.png" alt="" style="height: 500px; width: 100%">
 
                 <div class="healthbar">
+                    <!-- <div class="damage-index">-{{healthbarYou}}</div> -->
+                    <!-- <div 
+                        class="damage-index"
+                        :class="isStartGame && isYourTurn && damageIndex !== 0 ? 'run-damage-index' : ''"
+                    >-{{damageIndex}}</div> -->
+                    <!-- <div class="heal-index">+100</div> -->
+                    <div 
+                        class='damage-index'
+                        v-if="isDamageYou"
+                    >-{{damageIndex}}</div>
+                    <div 
+                        class='heal-index'
+                        v-if="isHealYou"
+                    >+{{healIndex}}</div>
                     <div
                         class="healthbar-progress"
                         :class="isStartGame ? 'run-healthbar-progress' : ''"
@@ -28,12 +40,21 @@
                 </div>
             </div>
             <div class="small-6 columns">
-                <!-- <div :class="winner == 'Monster' ? 'win' : ''">WIN</div> -->
                 <div class="win" v-if="winner === 'Monster'">WIN</div>
                 <h1 class="text-center">MONSTER</h1>
                 <img src="img/monster.png" alt="" style="height: 500px; width: 100%">
                 
                 <div class="healthbar">
+                    <!-- <div class="damage-index">-{{healthbarMonster}}</div> -->
+                    <!-- <div 
+                        class="damage-index"
+                        :class="isStartGame && !isYourTurn ? 'run-damage-index' : ''"
+                    >-{{damageIndex}}</div> -->
+                    <!-- <div class="heal-index">+100</div> -->
+                    <div 
+                        class='damage-index'
+                        v-if="isDamageMonster"
+                    >-{{damageIndex}}</div>
                     <div
                         class="healthbar-progress"
                         :class="isStartGame ? 'run-healthbar-progress' : ''"
@@ -44,20 +65,20 @@
                 </div>
             </div>
         </section>
-        <section class="row controls">
+        <!-- <section class="row controls">
             <div class="small-12 columns">
                 <button id="start-game" @click="startGame">START NEW GAME</button>
             </div>
-        </section>
-        <section class="row controls" v-if="isStartGame">
+        </section>  -->
+        <section class="row controls">
             <div class="small-12 columns">
-                <button id="attack" @click="attack">ATTACK</button>
-                <!-- <button id="special-attack">SPECIAL ATTACK</button> -->
-                <button id="heal">HEAL</button>
-                <button id="give-up">GIVE UP</button>
+                <button id="start-game" @click="startGame" v-if="!isStartGame">START NEW GAME</button>
+                <button id="attack" @click="attack" v-if="isStartGame">ATTACK</button>
+                <button id="heal" @click="heal" v-if="isStartGame">HEAL {{timeOfHeal}}</button>
+                <button id="give-up" @click="giveup" v-if="isStartGame">GIVE UP</button>
             </div>
         </section>
-        <section class="row log">
+        <!-- <section class="row log">
             <div class="small-12 columns">
                 <ul>
                     <li>
@@ -65,7 +86,7 @@
                     </li>
                 </ul>
             </div>
-        </section>
+        </section> -->
     </div>
 
     <script src="script/main.js"></script>
