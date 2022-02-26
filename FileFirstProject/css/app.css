@@ -6,12 +6,9 @@
 }
 
 .healthbar {
-    /* width: 80%; */
     height: 40px;
-    /* line-height: 40px; */
     background-color: #eee;
     margin: auto;
-    /* transition: width 500ms; */
     position: relative;
 }
 
@@ -102,8 +99,7 @@ button {
     height: 100%;
     background-color: red;
     margin: 0; 
-    /* color: white; */
-    /* text-align: center; */
+    transition: width 0.5s;
 
     position: absolute;
 }
@@ -120,8 +116,17 @@ button {
 }
 
 .run-healthbar-progress{
-    transition: width 0.5s;
-    animation: run-healthbar-progress 1s ease-in;
+    /* transition: width 0.5s; */
+    /* animation: run-healthbar-progress 1s ease-in; */
+    animation: alarm 1s ease-in 4;
+}
+
+@keyframes alarm {
+    0%{opacity: 1;}
+    25%{opacity: 0}
+    50%{opacity: 1;}
+    75%{opacity: 0;}
+    100%{opacity: 1;}
 }
 
 .small-6{
@@ -148,7 +153,6 @@ button {
     font-size: 35px;
     position: absolute;
     right: 0;
-    /* visibility: hidden; */
 }
 .damage-index{
     color: red;
@@ -167,10 +171,10 @@ button {
     visibility: visible;
     animation: run-heal-index 1s ease-out;
 }
-@keyframes run-healthbar-progress {
+/* @keyframes run-healthbar-progress {
     0%{width: 0%}
     100%{width: 100%}
-}
+} */
 
 @keyframes run-win {
     0%{transform: perspective(500px) translateZ(300px);}
@@ -185,4 +189,21 @@ button {
 @keyframes run-heal-index {
     0%{top: 0; opacity: 1}
     100%{top: -50px; opacity: 0}
+}
+
+.volume{
+    position: absolute;
+    z-index: 1;
+    left: 30px;
+    top: 15px;
+
+    font-size: 45px;
+    color: skyblue;
+    cursor: pointer;
+}
+
+h3 {
+    text-align: center;
+    color: violet;
+    margin: 0px;
 }
